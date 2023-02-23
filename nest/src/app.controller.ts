@@ -1,9 +1,9 @@
+import type { Request } from "express";
 import { Controller, Get, Req, Post, UseGuards } from "@nestjs/common";
 import { AppService } from "./app.service";
-import type { Request } from "express";
 import { LocalAuthGuard } from "./auth/auth.guard";
-import { AuthService } from "./auth/auth.service";
 import { JwtAuthGuard } from "./jwt/jwt.guard";
+import { AuthService } from "./auth/auth.service";
 
 @Controller()
 export class AppController {
