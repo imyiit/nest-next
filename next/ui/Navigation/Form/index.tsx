@@ -34,7 +34,6 @@ const Form = ({
               values[child.props.name]
             );
         });
-
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
