@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+"use client";
+import React from "react";
 import { useField } from "formik";
-import classNames from "classnames";
 
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import type Props from "./index.d";
+import classNames from "classnames";
 
 import ErrorBox from "../../Utils/ErrorBox";
 
-import type Props from "./index.d";
-
-function Password({ name, icon, placeholder }: Props) {
+const Text = ({ name, icon, placeholder, onTextChanged }: Props) => {
   const [field, meta, helpers] = useField(name);
-  const [visible, setVisible] = useState<boolean>(true);
 
   return (
     <div
@@ -29,35 +27,22 @@ function Password({ name, icon, placeholder }: Props) {
         )}
 
         <input
-          type={!visible ? "text" : "password"}
+          type="text"
           {...field}
           placeholder={placeholder}
           onChange={(e) => {
+            onTextChanged && onTextChanged(e.target.value);
             helpers.setValue(e.target.value);
           }}
           className={classNames({
             "bg-white w-full h-full outline-none py-2 px-3 rounded-sm": true,
           })}
         />
-
-        <div
-          className={classNames({
-            "flex justify-center items-center select-none bg-white px-2 text-xl cursor-pointer":
-              true,
-            "text-green-500": visible,
-            "text-red-500": !visible,
-          })}
-          onClick={() => {
-            setVisible((v) => !v);
-          }}
-        >
-          {visible ? <AiFillEye /> : <AiFillEyeInvisible />}
-        </div>
       </div>
 
       {meta.touched && meta.error && <ErrorBox text={meta.error} />}
     </div>
   );
-}
+};
 
-export { Password };
+export { Text };

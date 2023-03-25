@@ -1,9 +1,9 @@
 "use client";
 
-import Form from "@/ui/Navigation/Form";
-
-import Button from "@/ui/Navigation/Form/Button";
-import { Password, Text } from "@/ui/Navigation/Form/Inputs";
+import Form from "@/ui/DataEntry/Form";
+import Button from "@/ui/DataEntry/Form/Button";
+import { Password, Text, Number } from "@/ui/DataEntry/Form/Inputs";
+import Switch from "@/ui/DataEntry/Form/Switch";
 
 export async function generateMetadata() {
   return { title: "Ben Yiit" };
@@ -36,6 +36,22 @@ export default function Page() {
               return "";
             }}
           />
+
+          <Number
+            name="Number"
+            validate={(value) => {
+              if (value > 5) return "Sayı 5'den büyük.";
+
+              return "";
+            }}
+          />
+
+          <Switch name="Switch" validate={(value)=>{
+            
+            if(!value) return "Seçmeniz gerek."
+
+            return ""
+          }}/>
 
           <Button name="submit">Label</Button>
         </Form>
