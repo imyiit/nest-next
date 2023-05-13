@@ -1,17 +1,8 @@
-import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
-import { NestExpressApplication } from "@nestjs/platform-express";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import * as dotenv from "dotenv";
-dotenv.config();
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-NestFactory.create<NestExpressApplication>(AppModule)
-  .then(async (app) => {
-    app.use(cookieParser());
-    app.use(cors());
-    await app.listen(3001);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
