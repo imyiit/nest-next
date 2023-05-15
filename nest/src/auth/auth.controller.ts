@@ -10,13 +10,18 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.login(signInDto.username, signInDto.password);
+  postLogin(@Body() loginDTO: Record<string, any>) {
+    return this.authService.login(loginDTO.username, loginDTO.password);
   }
 
+  @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@User() user) {
     return user;
   }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('register')
+  postRegister() {}
 }
