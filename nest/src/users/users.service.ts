@@ -11,6 +11,8 @@ export interface IUser {
 
 @Injectable()
 export class UsersService {
+  private Database = new Sags({ name: 'users' });
+
   private readonly users = [
     {
       userId: 1,
@@ -32,5 +34,9 @@ export class UsersService {
 
   findWith(callback: (user: IUser) => void): IUser | undefined {
     return this.users.find(callback);
+  }
+
+  saveUser(user: Omit<IUser, 'userId'>): IUser {
+    return;
   }
 }
