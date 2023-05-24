@@ -9,12 +9,6 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
-  @Post('login')
-  postLogin(@Body() loginDTO: Record<string, any>) {
-    return this.authService.login(loginDTO.username, loginDTO.password);
-  }
-
-  @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@User() user) {
@@ -22,6 +16,18 @@ export class AuthController {
   }
 
   @HttpCode(HttpStatus.OK)
+  @Post('login')
+  postLogin(@Body() loginDTO: Record<string, any>) {
+    return this.authService.login(loginDTO.username, loginDTO.password);
+  }
+
+  @HttpCode(HttpStatus.OK)
   @Post('register')
-  postRegister() {}
+  postRegister(@Body() RegisterDTO: Record<string, any>) {
+    return this.authService.register(
+      RegisterDTO.username,
+      RegisterDTO.password,
+      RegisterDTO.email,
+    );
+  }
 }
