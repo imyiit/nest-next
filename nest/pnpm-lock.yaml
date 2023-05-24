@@ -16,6 +16,9 @@ dependencies:
   '@nestjs/platform-express':
     specifier: ^9.0.0
     version: 9.0.0(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
+  '@types/uuid':
+    specifier: ^9.0.1
+    version: 9.0.1
   passport-jwt:
     specifier: ^4.0.1
     version: 4.0.1
@@ -29,8 +32,8 @@ dependencies:
     specifier: ^7.2.0
     version: 7.2.0
   sagdb:
-    specifier: ^1.1.0
-    version: 1.1.0
+    specifier: ^1.1.2
+    version: 1.1.2
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -1240,6 +1243,10 @@ packages:
     dependencies:
       '@types/superagent': 4.1.17
     dev: true
+
+  /@types/uuid@9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
+    dev: false
 
   /@types/yargs-parser@21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
@@ -4305,8 +4312,8 @@ packages:
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sagdb@1.1.0:
-    resolution: {integrity: sha512-myUQUiwn4VQC+iji+Rj6IZxlx2LDEcj10X5ZBpc2uj4GEPpPqEeCz7eQGi/QEPt1yy/3E4rFZ5OUEyWLgdNpqQ==}
+  /sagdb@1.1.2:
+    resolution: {integrity: sha512-3y5q3db5iKyUqyqBrXx6Pvj4t/1rwz1ueU+GuZ31CGGuSw6P8vxP8tVWjsevdF7Pog4Nv/yB6pmv+z5tS0npLw==}
     dependencies:
       lodash: 4.17.21
     dev: false

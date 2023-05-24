@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 
 import Sags from 'sagdb';
 
 export interface IUser {
-  userId: number;
+  userId: string;
   username: string;
   password: string;
   email: string;
@@ -11,32 +12,27 @@ export interface IUser {
 
 @Injectable()
 export class UsersService {
-  private Database = new Sags({ name: 'users' });
+  private Database = new Sags<IUser, IUser[]>({ name: 'users' });
 
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'yiit',
-      password: '123',
-      email: 'yiit@gmail.com',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-      email: 'maria@gmail.com',
-    },
-  ];
+  private users() {
+    return this.Database.get('users') || [];
+  }
 
   findOne(username: string): IUser | undefined {
-    return this.users.find((user) => user.username === username);
+    return this.users().find((user) => user.username === username);
   }
 
   findWith(callback: (user: IUser) => void): IUser | undefined {
-    return this.users.find(callback);
+    return this.users().find(callback);
   }
 
-  saveUser(user: Omit<IUser, 'userId'>): IUser {
+  saveUser(user: Omit<IUser, 'user Id'>): IUser {
+    const userData: IUser = {
+      ...user,
+      userId: uuidv4(),
+    };
+
+    this.Database.push('users', userData);
     return;
   }
 }
