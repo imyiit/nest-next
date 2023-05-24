@@ -9,8 +9,9 @@ export class AuthService {
   ) {}
 
   async login(username: string, pass: string) {
-    const user = this.userService.findOne(username);
-
+    const user = this.userService.findWith(
+      (user) => user.username === username,
+    );
     if (user?.password !== pass) {
       throw new UnauthorizedException('Password not correct!');
     }
@@ -22,7 +23,9 @@ export class AuthService {
   }
 
   async register(username: string, pass: string, email: string) {
-    const user = this.userService.findOne(username);
+    const user = this.userService.findWith(
+      (user) => user.username === username,
+    );
 
     if (user) {
       throw new UnauthorizedException('This username already taked!');
