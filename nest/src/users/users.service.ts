@@ -18,8 +18,8 @@ export class UsersService {
     return this.Database.get('users') || [];
   }
 
-  findOne(username: string): IUser | undefined {
-    return this.users().find((user) => user.username === username);
+  findWithId(userId: string): IUser | undefined {
+    return this.users().find((user) => user.userId === userId);
   }
 
   findWith(callback: (user: IUser) => void): IUser | undefined {
