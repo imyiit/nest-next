@@ -23,6 +23,7 @@ export class AuthService {
       throw new UnauthorizedException('Password not correct!');
     }
 
+    //Return user data without password, Generate accsess key
     const { password, ...userData } = user;
     return {
       access_token: await this.jwtService.signAsync(userData),
