@@ -12,10 +12,10 @@ export interface IUser {
 
 @Injectable()
 export class UsersService {
-  private Database = new Sags<IUser, IUser[]>({ name: 'users' });
+  private Database = () => new Sags<IUser, IUser[]>({ name: 'users' });
 
   private users() {
-    return this.Database.get('users') || [];
+    return this.Database().get('users') || [];
   }
 
   findWithId(userId: string): IUser | undefined {
@@ -33,7 +33,7 @@ export class UsersService {
       userId: uuidv4(),
     };
 
-    this.Database.push('users', userData);
+    this.Database().push('users', userData);
     return userData;
   }
 }
