@@ -11,9 +11,7 @@ export class AuthService {
   ) {}
 
   async login(username: string, pass: string) {
-    const user = this.userService.findWith(
-      (user) => user.username === username,
-    );
+    const user = this.userService.find((user) => user.username === username);
 
     if (!user) {
       throw new UnauthorizedException("Don't find this user. Pls register!");
@@ -31,11 +29,11 @@ export class AuthService {
   }
 
   async register(username: string, password: string, email: string) {
-    if (this.userService.findWith((user) => user.username === username)) {
+    if (this.userService.find((user) => user.username === username)) {
       throw new UnauthorizedException('This username already taked!');
     }
 
-    if (this.userService.findWith((u) => u.email === email)) {
+    if (this.userService.find((u) => u.email === email)) {
       throw new UnauthorizedException('This email already taked!');
     }
 
@@ -43,10 +41,10 @@ export class AuthService {
       throw new UnauthorizedException('Password must bigger then 8!');
     }
 
-    if (this.userService.findWith((user) => user.email === email)) {
+    if (this.userService.find((user) => user.email === email)) {
       throw new UnauthorizedException('This email is already taked!');
     }
 
-    return this.userService.saveUser({ email, password, username });
+    return this.userService.save({ email, password, username });
   }
 }

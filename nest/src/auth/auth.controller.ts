@@ -19,13 +19,13 @@ export class AuthController {
   @UseGuards(ThrottlerGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  postLogin(@Body() loginDTO: Record<string, any>) {
+  postLogin(@Body() loginDTO: Record<string, string>) {
     return this.authService.login(loginDTO.username, loginDTO.password);
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('register')
-  postRegister(@Body() RegisterDTO: Record<string, any>) {
+  postRegister(@Body() RegisterDTO: Record<string, string>) {
     return this.authService.register(
       RegisterDTO.username,
       RegisterDTO.password,
