@@ -8,7 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 
 import jwtConstants from '../jwt/constants';
-import { UserDTO } from 'src/users/users.dto';
+import { CreateUserDTO } from '../dto';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -24,11 +24,12 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: jwtConstants.secret,
       });
-      request['user'] = payload as UserDTO;
+      request['user'] = payload as CreateUserDTO;
     } catch {
       throw new UnauthorizedException();
+    } finally {
+      return true;
     }
-    return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {

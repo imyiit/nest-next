@@ -1,19 +1,29 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { HttpCode, HttpStatus, Post, Body } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
-import { User } from 'src/users/users.decorator';
 import { ThrottlerGuard } from '@nestjs/throttler';
+
+import { AuthService } from './auth.service';
+
+import { AuthGuard, RolesGuard } from '../guard';
+import { User, Roles } from '../decorators';
+
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @UseGuards(ThrottlerGuard)
-  @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard)
+  @HttpCode(HttpStatus.OK)
   @Get('profile')
   getProfile(@User() user) {
     return user;
+  }
+
+  @UseGuards(RolesGuard)
+  @Roles('admin')
+  @Get('test')
+  getTest() {
+    return 'Test returned!';
   }
 
   @UseGuards(ThrottlerGuard)
