@@ -1,8 +1,6 @@
 import classNames from "classnames";
 import { useField } from "formik";
 import React, { useState } from "react";
-
-import { FaBeer } from "react-icons/fa";
 import ErrorBox from "../Utils/ErrorBox";
 
 import type Props from "./index.d";
@@ -42,15 +40,9 @@ const Checkbox = ({ name, text = "", onCheckedChanged }: Props) => {
             "bg-white": !checked,
           })}
         >
-          O
+          ✓
         </div>
-        <p className="text-xs px-2">
-          {text}
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi ipsa
-          nostrum a reiciendis, fuga impedit laboriosam error pariatur,
-          voluptas, cumque ullam vel. In eaque quis, blanditiis aliquid culpa ex
-          ipsum.
-        </p>
+        <p className="text-xs px-2 flex items-center justify-center">{text}</p>
       </div>
       {alreadyClick && meta.error && <ErrorBox text={meta.error} />}
     </div>

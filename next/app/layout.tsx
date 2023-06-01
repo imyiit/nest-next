@@ -30,7 +30,7 @@ export default function RootLayout({
                 { label: "İletişim", url: "/#" },
                 { label: "Bana Ulaş", url: "/#" },
               ]}
-            ></Header>
+            />
           </header>
           <main className="col-start-2">{children}</main>
           <footer className="col-start-2">

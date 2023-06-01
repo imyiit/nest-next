@@ -9,6 +9,7 @@ const Button = ({
   name,
   disabled = false,
   type = "Primary",
+  buttonType = "button",
 }: Props) => {
   const [field, , helpers] = useField(name);
 
@@ -17,7 +18,7 @@ const Button = ({
       <button
         disabled={disabled}
         {...field}
-        type="submit"
+        type={buttonType}
         onClick={() => {
           helpers.setValue(true);
         }}
